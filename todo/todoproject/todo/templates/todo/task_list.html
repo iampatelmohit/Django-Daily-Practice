@@ -1,0 +1,51 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+    <div class="card-body p-0 bg-white"> <div class="p-4">
+        <h2 class="mb-0 text-dark fw-bold">All Tasks</h2>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table align-middle mb-0"> 
+          <thead class="table-light">
+            <tr class="text-secondary">
+              <th class="ps-4">Title</th>
+              <th>Description</th>
+              <th class="text-center">Done</th>
+              <th>Created At</th>
+              <th class="text-end pe-4">Action</th> </tr>
+          </thead>
+          <tbody>
+            {% for task in task %}
+            <tr>
+              <td class="ps-4 fw-bold">{{ task.title }}</td>
+              <td class="text-muted">{{ task.description|linebreaks }}</td>
+              <td class="text-center">
+                <form method="post" action="{% url 'todo:task_toggle' task.pk %}">
+                  {% csrf_token %}
+                  <input type="checkbox" class="form-check-input" onchange="this.form.submit()" 
+                  {% if task.completed %} checked {% endif %}>
+                </form>
+              </td>
+              <td class="small">{{ task.created_at|date:"M d, y H:i" }}</td>
+              <td class="text-end pe-4">
+                <div class="d-flex justify-content-end gap-2">
+                  <a class="btn btn-sm btn-warning px-3 rounded-pill" href="{% url 'todo:task_update' task.pk %}">Edit</a>
+                  <a class="btn btn-sm btn-danger px-3 rounded-pill" href="{% url 'todo:task_delete' task.pk %}">Delete</a>
+                </div>
+              </td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="5" class="text-center py-4 text-muted">No task available</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
