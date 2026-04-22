@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Delete</title>
+</head>
+<body>
+    <h2>Are you sure you want to delete "{{ student.name }}"?</h2>
+    <form method ="post"> 
+        {% csrf_token %}
+        <p>This action cannot be undone.</p>
+        <button type = "submit">Yse, Delete</button>
+        <a href="{% url 'student_list' %}"> Cancel</a>
+    </form>
+</body>
+</html>
