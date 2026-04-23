@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auth_Demo</title>
+</head>
+<body>
+    
+    {% if messages %}
+    <ul>
+        
+        {% for m in messages %}
+            <li>{{m}}</li>
+        {% endfor %}
+            
+    </ul>
+        
+    {% endif %}
+        
+        {% if user.is_authenticate  %}
+        <p> welcome {{user.username}} </p> <a href="{% url 'user_logout' %}">Logout</a>
+            
+       
+            {% else %}
+            <a href="{% url 'user_login' %}">Login</a> 
+            <a href="{% url 'user_register' %}">Register</a>
+             {% endif %}
+             
+             {% block content %}
+                 
+
+             {% endblock content %}
+                
+</body>
+</html>
