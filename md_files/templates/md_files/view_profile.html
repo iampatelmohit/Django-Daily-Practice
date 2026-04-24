@@ -1,0 +1,22 @@
+{% extends 'md_files/base.html' %}
+
+
+{% block content %}
+     <h2>View Profile</h2>
+     
+      <ul>
+        
+        {% for p in profiles %}
+        <li>   
+           <p> {{p.name}}</p>
+             <img src="{{ p.image.url }}" alt="{{p.name}}" width ="200"> 
+        </li>
+       
+            
+        {% endfor %}
+            
+      </ul>
+
+
+{% endblock content %}
+    
