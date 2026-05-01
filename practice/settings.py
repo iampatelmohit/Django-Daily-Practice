@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Student',
     'user_auth',
     'md_files',
+    'blog',
     
     
 ]

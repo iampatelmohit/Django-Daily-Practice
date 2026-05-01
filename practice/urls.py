@@ -25,6 +25,7 @@ urlpatterns = [
     path('',include('Student.urls')),
     path('user_auth/',include('user_auth.urls')),
     path('md_files/',include('md_files.urls')),
+    path('blog/',include('blog.urls')), 
 ]
 
 if settings.DEBUG:
